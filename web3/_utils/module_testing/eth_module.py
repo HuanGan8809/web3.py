@@ -683,6 +683,7 @@ class EthModuleTest:
         block = web3.eth.getBlock(empty_block['hash'])
         assert block['hash'] == empty_block['hash']
         assert block['receiptsRoot'] == empty_block['receiptsRoot']
+        assert block['logsBloom'] == empty_block['logsBloom']
 
     def test_eth_getBlockByHash_not_found(
         self, web3: "Web3", empty_block: BlockData

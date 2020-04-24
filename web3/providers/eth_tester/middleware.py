@@ -109,7 +109,7 @@ BLOCK_KEY_MAPPINGS = {
     'sha3_uncles': 'sha3Uncles',
     'transactions_root': 'transactionsRoot',
     'parent_hash': 'parentHash',
-    'bloom': 'logsBloom',
+    'logs_bloom': 'logsBloom',
     'state_root': 'stateRoot',
     'receipts_root': 'receiptsRoot',
     'total_difficulty': 'totalDifficulty',
@@ -119,6 +119,13 @@ BLOCK_KEY_MAPPINGS = {
 
 
 block_key_remapper = apply_key_map(BLOCK_KEY_MAPPINGS)
+
+
+BLOCK_FORMATTERS = {
+    'logsBloom': integer_to_hex,
+}
+
+block_formatter = apply_formatters_to_dict(BLOCK_FORMATTERS)
 
 
 TRANSACTION_PARAMS_MAPPING = {
@@ -236,11 +243,11 @@ ethereum_tester_middleware = construct_formatting_middleware(
     result_formatters={
         RPCEndpoint('eth_getBlockByHash'): apply_formatter_if(
             is_dict,
-            block_key_remapper,
+            compose(block_key_remapper, block_formatter),
         ),
         RPCEndpoint('eth_getBlockByNumber'): apply_formatter_if(
             is_dict,
-            block_key_remapper,
+            compose(block_key_remapper, block_formatter),
         ),
         RPCEndpoint('eth_getBlockTransactionCountByHash'): apply_formatter_if(
             is_dict,
