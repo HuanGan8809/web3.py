@@ -111,7 +111,7 @@ BLOCK_KEY_MAPPINGS = {
     'parent_hash': 'parentHash',
     'bloom': 'logsBloom',
     'state_root': 'stateRoot',
-    'receipt_root': 'receiptsRoot',
+    'receipts_root': 'receiptsRoot',
     'total_difficulty': 'totalDifficulty',
     'extra_data': 'extraData',
     'gas_used': 'gasUsed',
