@@ -767,7 +767,6 @@ class EthModuleTest:
         assert is_dict(receipt)
         assert receipt['blockNumber'] == block_with_txn['number']
         assert receipt['blockHash'] == block_with_txn['hash']
-        assert receipt['receiptsRoot'] == block_with_txn['receiptsRoot']
         assert receipt['transactionIndex'] == 0
         assert receipt['transactionHash'] == HexBytes(mined_txn_hash)
         assert is_checksum_address(receipt['to'])

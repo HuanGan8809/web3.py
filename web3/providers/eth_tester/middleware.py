@@ -257,6 +257,14 @@ ethereum_tester_middleware = construct_formatting_middleware(
             is_dict,
             transaction_key_remapper,
         ),
+        RPCEndpoint('eth_getUncleByBlockNumberAndIndex'): apply_formatter_if(
+            is_dict,
+            compose(block_key_remapper, block_formatter),
+        ),
+        RPCEndpoint('eth_getUncleByBlockHashAndIndex'): apply_formatter_if(
+            is_dict,
+            compose(block_key_remapper, block_formatter),
+        ),
         RPCEndpoint('eth_getTransactionByHash'): apply_formatter_if(
             is_dict,
             compose(transaction_key_remapper, transaction_formatter),
